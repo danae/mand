@@ -1,0 +1,9 @@
+<?php
+// Database connection
+$settings['db.server'] = 'localhost';
+$settings['db.user'] = 'username';
+$settings['db.password'] = 'password';
+$settings['db.database'] = 'database';
+
+// Return the settings
+return $settings;

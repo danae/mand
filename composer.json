@@ -1,0 +1,27 @@
+{
+  "name": "dengsn/propel",
+  "description": "Simple URL shortening and branding",
+  "authors": [
+    {
+      "name": "dengsn",
+      "email": "info@dengsn.com"
+    }
+  ],
+  "license": "GPL-3.0+",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "php": "^7.0",
+    "dengsn/database-wrapper": "^0.1",
+    "silex/silex": "^2.0",
+    "jdesrosiers/silex-cors-provider": "^1.0",
+    "twig/twig": "^2.0",
+    "symfony/twig-bridge": "^3.4",
+    "symfony/serializer": "^3.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "Propel\\": "src/"
+    }
+  }
+}

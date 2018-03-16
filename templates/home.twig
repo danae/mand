@@ -1,0 +1,66 @@
+{% extends "index.twig" %}
+
+{% block main %}
+  <h2>Shorten and brand any URL</h2>
+  <p>Use <a href="https://github.com/dengsn/propel">Propel</a> to shorten and brand your long URLs.</p>
+
+  {% if app['auth_user'] is defined %}
+    <h2>Your shortened URLs</h2>
+    <p>This table lists all URLs you have shortened so far. Only you can access the redirect information and analytics of a shortened URL.</p>
+
+    <div class="card">
+      <table class="table table-sm mb-0">
+        <thead class="thead-dark">
+          <tr>
+            <th style="width: 20%">Short URL</th>
+            <th style="width: 50%">Original URL</th>
+            <th style="width: 20%">Created</th>
+            <th style="width: 10%" class="text-right">Hits</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if urls is defined and urls|length > 0 %}
+            {% for url in urls %}
+              <tr>
+                <td><a href="{{ url.shortUrl }}">{{ url.shortUrl }}</a></td>
+                <td><a href="{{ url.longUrl }}">{{ url.longUrl }}</a></td>
+                <td>{{ url.created|date('M d, Y') }}</td>
+                <td class="text-right">{{ url.hits }}</td>
+              </tr>
+            {% endfor %}
+          {% else %}
+            <tr>
+              <td colspan="4">No URLs found</td>
+            </tr>
+          {% endif %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <h2>Log in</h2>
+    <p>Sign in to access your shortened URLs:</p>
+
+    <div class="card">
+      <div class="card-body">
+        <form>
+          <div class="form-group row">
+            <label for="email" class="col-sm-2 col-form-label">Email address</label>
+            <div class="col-sm-10">
+              <input type="email" class="form-control" id="email" placeholder="Email address">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="password" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control" id="password" placeholder="Password">
+            </div>
+          </div>
+          <div class="text-right">
+            <button type="submit" class="btn btn-primary">Sign in</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}
+
