@@ -1,6 +1,6 @@
 {
-  "name": "dengsn/propel",
-  "description": "Simple URL shortening and branding",
+  "name": "dengsn/mand",
+  "description": "Simple URL shortening API using PHP and MongoDB",
   "authors": [
     {
       "name": "dengsn",
@@ -8,11 +8,9 @@
     }
   ],
   "license": "GPL-3.0+",
-  "minimum-stability": "dev",
-  "prefer-stable": true,
   "require": {
-    "php": "^7.0",
-    "dengsn/database-wrapper": "^0.1",
+    "php": "^7.1",
+    "mongodb/mongodb": "^1.4",
     "silex/silex": "^2.0",
     "jdesrosiers/silex-cors-provider": "^1.0",
     "twig/twig": "^2.0",
@@ -21,7 +19,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Propel\\": "src/"
+      "Mand\\": "src/"
     }
   }
 }

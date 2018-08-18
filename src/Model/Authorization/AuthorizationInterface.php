@@ -1,5 +1,5 @@
 <?php
-namespace Propel\Model\User\Authorization;
+namespace Mand\Model\User\Authorization;
 
 use Symfony\Component\HttpFoundation\Request;
 

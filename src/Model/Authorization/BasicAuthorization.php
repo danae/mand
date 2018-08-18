@@ -1,9 +1,8 @@
 <?php
-namespace Propel\Model\User\Authorization;
+namespace Mand\Model\User\Authorization;
 
-use Propel\Model\User\UserNotFoundException;
-use Propel\Model\User\UserRepositoryInterface;
-use Silex\Application;
+use Mand\Model\User\UserNotFoundException;
+use Mand\Model\User\UserRepositoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 

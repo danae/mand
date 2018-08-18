@@ -1,7 +1,7 @@
 <?php
-namespace Propel\Provider;
+namespace Mand\Provider;
 
-use Propel\Model\Url\Url;
+use Mand\Model\Url;
 use Silex\Api\ControllerProviderInterface;
 use Silex\Application;
 use Silex\ControllerCollection;
@@ -11,9 +11,9 @@ class UIControllerProvider implements ControllerProviderInterface
   // Redirect URLs if entered directly
   public function redirect(Url $url, Application $app)
   {
-    return $app->redirect($url->getLongUrl());
+    return $app->redirect($url->getUrl());
   }
-  
+
   // Render the home page
   public function home(Application $app)
   {
@@ -22,25 +22,25 @@ class UIControllerProvider implements ControllerProviderInterface
       'urls' => $app['urls']->findAll()
     ]);
   }
-  
+
   // Connect to the app
   public function connect(Application $app): ControllerCollection
   {
     // Create controllers
     $controllers = $app['controllers_factory'];
-    
+
     // Redirect URLs if entered directly
     $app->get('/{url}',[$this,'redirect'])
-      ->assert('url','[A-Za-z]{4,}')
-      ->convert('url',function($url) use ($app) {
-        return $app['urls']->findByShortUrl($app['base_url'] . $url);
+      ->assert('url','[a-z0-9]{4,}')
+      ->convert('url',function($id) use ($app) {
+        return $app['urls']->find($id);
       })
       ->bind('route.redirect');
 
     // Render the home page
     $app->get('/',[$this,'home'])
       ->bind('route.home');
-    
+
     // Return the controllers
     return $controllers;
   }

@@ -1,5 +1,5 @@
 <?php
-namespace Propel\Generator;
+namespace Mand\Generator;
 
 interface GeneratorInterface
 {

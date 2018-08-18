@@ -1,7 +1,9 @@
 <?php
-namespace Propel\Model\User;
+namespace Mand\Implementation\MongoDB;
 
 use Database\Database;
+use Mand\Model\User;
+use Mand\Model\UserRepositoryInterface;
 use Symfony\Component\Serializer\Serializer;
 
 class UserRepository implements UserRepositoryInterface
@@ -10,7 +12,7 @@ class UserRepository implements UserRepositoryInterface
   private $database;
   private $table;
   private $serializer;
-  
+
   // Constructor
   public function __construct(Database $database, string $table, Serializer $serializer)
   {
@@ -18,7 +20,7 @@ class UserRepository implements UserRepositoryInterface
     $this->table = $table;
     $this->serializer = $serializer;
   }
-  
+
   // Get a user from the repository
   public function find(string $id): User
   {
@@ -28,7 +30,7 @@ class UserRepository implements UserRepositoryInterface
     else
       return $this->serializer->denormalize($data,User::class);
   }
-  
+
   // Get a user by email
   public function findByemail(string $email): User
   {
@@ -38,7 +40,7 @@ class UserRepository implements UserRepositoryInterface
     else
       return $this->serializer->denormalize($data,User::class);
   }
-  
+
   // Get all users
   public function findAll(): array
   {
@@ -47,21 +49,21 @@ class UserRepository implements UserRepositoryInterface
       return $this->serializer->denormalize($row,User::class);
     },$data);
   }
-  
-  // Create a user in the repository
-  public function create(User $user)
+
+  // Insert a user in the repository
+  public function insert(User $user)
   {
     $array = $this->serializer->normalize($user);
     $this->database->insert($this->table,$array);
   }
-  
+
   // Update a user in the repository
   public function update(User $user)
   {
     $array = $this->serializer->normalize($user);
     $this->database->update($this->table,$array,['id' => $user->getId()]);
   }
-  
+
   // Delete a user from the repository
   public function delete(User $user)
   {

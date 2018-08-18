@@ -1,5 +1,5 @@
 <?php
-namespace Propel\Model\User;
+namespace Mand\Model;
 
 use DateTime;
 use Symfony\Component\Serializer\Normalizer\NormalizableInterface;
@@ -12,7 +12,7 @@ class User implements NormalizableInterface
   private $email;
   private $password;
   private $created;
-  
+
   // Management
   public function getId()
   {
@@ -53,16 +53,16 @@ class User implements NormalizableInterface
       $this->created = $created;
     else
       throw new InvalidArgumentException('created');
-    
+
     return $this;
   }
-  
+
   // Normalize the user for a response
   public function normalize(NormalizerInterface $normalizer, $format = null, array $context = []): array
   {
     return [
       'type' => 'user',
-      
+
       'email' => $this->getEmail(),
       'created' => $normalizer->normalize($this->getCreated(),$format,$context)
     ];

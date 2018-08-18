@@ -1,9 +1,6 @@
 <?php
 // Database connection
-$settings['db.server'] = 'localhost';
-$settings['db.user'] = 'username';
-$settings['db.password'] = 'password';
-$settings['db.database'] = 'database';
+$settings['mongodb.connection'] = 'mongodb://127.0.0.1:27017';
 
 // Return the settings
 return $settings;
